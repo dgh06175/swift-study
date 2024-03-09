@@ -109,3 +109,61 @@ repeat {
     m = m * 2
 } while m < 100
 print(m) // 128
+
+func sayHello(who person: String, _ day: Int) -> String {
+    return "Hello \(person), this is day \(day)."
+}
+
+print(sayHello(who: "Ace", 32))
+
+func calc(scores: [Int]) -> (sum: Int, max: Int, min: Int) {
+    var max = Int.min;
+    var min = Int.max;
+    var sum = 0;
+    
+    for score in scores {
+        if score > max {
+            max = score
+        }
+        if score < min {
+            min = score
+        }
+        sum += score
+    }
+    
+    return (sum, max, min)
+}
+
+let ans = calc(scores: [12, 30, 200, 50, 2, 4])
+print("합: \(ans.sum), 최대: \(ans.max), 최소: \(ans.2)")
+
+func makeFunc() -> ((Int) -> Int) {
+    func addOne(num: Int) -> Int {
+        return num + 1
+    }
+    return addOne
+}
+
+let getFunc = makeFunc()
+print(getFunc(3))
+print(type(of: getFunc))
+
+func isAllMathces(_ list: [Int], algor: (Int) -> Bool) -> Bool {
+    for num in list {
+        if !algor(num) {
+            return false
+        }
+    }
+    return true
+}
+
+func isEven(number: Int) -> Bool {
+    return number % 2 == 0
+}
+
+let list1 = [2, 4, 6, 8]
+let list2 = [10, 11, 12, 14]
+
+print(isAllMathces(list1, algor: isEven))
+print(isAllMathces(list2, algor: isEven))
+
