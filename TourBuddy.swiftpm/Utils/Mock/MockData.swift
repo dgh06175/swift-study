@@ -18,19 +18,19 @@ struct MockData {
         User(
             id: NSUUID().uuidString,
             name: "Onve",
-            image: Image(systemName: "person.fill.checkmark"),
+            image: Image(systemName: "person.circle"),
             status: Status()
         ),
         User(
             id: NSUUID().uuidString,
             name: "Kumi",
-            image: Image(systemName: "person.fill.questionmark"),
+            image: Image(systemName: "person.circle"),
             status: Status()
         ),
         User(
             id: NSUUID().uuidString,
             name: "Nana",
-            image: Image(systemName: "person.fill.badge.plus"),
+            image: Image(systemName: "person.circle"),
             status: Status()
         ),
         User(
@@ -42,7 +42,7 @@ struct MockData {
         User(
             id: NSUUID().uuidString,
             name: "Joy",
-            image: Image(systemName: "person.badge.shield.checkmark"),
+            image: Image(systemName: "person.circle"),
             status: Status()
         ),
     ]

@@ -17,8 +17,11 @@ struct CardView: View {
         ZStack{
             ZStack(alignment: .top) {
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.white)
-                    .shadow(radius: 5)
+                    .fill(Color(red: 235/255, green: 235/255, blue: 235/255))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray, lineWidth: 1)
+                    )
                 SwipeActionIndicatorView(xOffsett: $xOffset)
             }
             

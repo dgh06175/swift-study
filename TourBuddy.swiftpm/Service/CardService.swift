@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardService {
     func fetchCardModels() async throws -> [Card] {
-        let cards = cards
-        return cards;
+        let cardsData = cards
+        return cardsData
     }
 }

@@ -23,7 +23,7 @@ let cards: [Card] = [
                 money: 0,
                 adventure: -1,
                 plan: 0
-              )
+                )
             ),
         Card(
             id: NSUUID().uuidString,

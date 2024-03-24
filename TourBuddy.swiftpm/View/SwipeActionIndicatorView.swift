@@ -37,7 +37,7 @@ struct SwipeActionIndicatorView: View {
                 .rotationEffect(.degrees(30))
                 .opacity(Double(xOffsett / SizeConstants.screenCutoff) * -1)
         }
-        .padding(40)
+        .padding(45).offset(y: -20)
     }
 }
 
