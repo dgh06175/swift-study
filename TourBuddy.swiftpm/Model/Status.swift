@@ -8,7 +8,7 @@
 import SwiftUI
 
 // 유저 또는 카드의 에너지 돈 모험 계획력 정보
-struct Status {
+struct Status: Hashable{
     var energy: Int = 0
     var money: Int = 0
     var adventure: Int = 0

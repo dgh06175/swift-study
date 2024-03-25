@@ -12,6 +12,7 @@ import SwiftUI
 class CardsViewModel: ObservableObject {
     // @Published 어노테이션: 값이 변경되면 알림을 울려 다른 곳에서 알아챌 수 있게 함
     @Published var cardModels = [Card]()
+    @Published var buttonSwipeAction: SwipeAction? // O, X 버튼 작동 위한 변수
 
     private let service: CardService
     
@@ -26,5 +27,10 @@ class CardsViewModel: ObservableObject {
         } catch {
             print("[ERROR] fetchCardModels error: \(error)")
         }
+    }
+    
+    func removeCard(_ card: Card) {
+        guard let index = cardModels.firstIndex(where: { $0.id == card.id }) else { return }
+        cardModels.remove(at: index)
     }
 }

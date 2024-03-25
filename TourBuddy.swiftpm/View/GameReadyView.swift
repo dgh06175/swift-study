@@ -10,17 +10,18 @@ import SwiftUI
 struct GameReadyView: View {
     @State var readyCount: Int = 0
     @State private var navigateToGame = false
+    @State var player: User = MockData.users[0]
     
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack(spacing: 20) {
                 ForEach(MockData.users) { user in
                     UserView(readyCount: $readyCount, user: user)
                 }
                 GameStartButtonView(readyCount: readyCount, navigateToGame: $navigateToGame)
             }
             .navigationDestination(isPresented: $navigateToGame) {
-                GameView()
+                GameView(player: $player)
             }
         }
     }
@@ -32,14 +33,14 @@ struct UserView: View {
     var user: User
     
     var body: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 28) {
             ZStack {
                 Circle()
-                    .fill(Color.gray)
+                    .fill(Color.lightGray)
                     .frame(width: 58, height: 58)
                 user.image
                     .resizable()
-                    .foregroundStyle(Color.black)
+                    .foregroundStyle(Color.gray)
                     .frame(width: 60, height: 60)
             }
             
@@ -53,14 +54,13 @@ struct UserView: View {
             }, label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
-                        .fill(isReady ? Color.blue : Color.lightGray)
+                        .fill(isReady ? Color.travelWallet3 : Color.lightGray)
                         .frame(width: 300, height: 60)
                     Text(user.name).foregroundStyle(Color.black)
                         .font(.title2)
                 }
             })
         }
-        .padding(6)
     }
 }
 
@@ -75,11 +75,11 @@ struct GameStartButtonView: View {
             }
         }
         .disabled(readyCount != 6)
-        .padding()
-        .background(readyCount == 6 ? Color.green : Color.lightGray)
-        .foregroundColor(.white)
+        .padding(40)
+        .background(readyCount == 6 ? Color.travelWallet2 : Color.lightGray)
+        .foregroundColor(.black)
         .cornerRadius(10)
-        .padding()
+        .padding(40)
     }
 }
 

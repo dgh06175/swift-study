@@ -8,7 +8,7 @@
 import SwiftUI
 
 // 질문 카드 한 장의 정보
-struct Card: Identifiable {
+struct Card: Identifiable, Hashable {
     let id: String
     let question: String
     let status: Status

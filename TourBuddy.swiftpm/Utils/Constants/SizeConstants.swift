@@ -15,6 +15,6 @@ struct SizeConstants {
         cardWidth / 3 * 4;
     }
     static var screenCutoff: CGFloat {
-        cardWidth;
+        cardWidth * 0.75;
     }
 }
