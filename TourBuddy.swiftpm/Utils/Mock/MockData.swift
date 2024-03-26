@@ -11,37 +11,37 @@ struct MockData {
     static let users: [User] = [
         User(
             id: NSUUID().uuidString,
-            name: "Ace",
+            name: "에이스",
             image: Image(systemName: "person.circle"),
             status: Status()
         ),
         User(
             id: NSUUID().uuidString,
-            name: "Onve",
+            name: "온브",
             image: Image(systemName: "person.circle"),
             status: Status()
         ),
         User(
             id: NSUUID().uuidString,
-            name: "Kumi",
+            name: "쿠미",
             image: Image(systemName: "person.circle"),
             status: Status()
         ),
         User(
             id: NSUUID().uuidString,
-            name: "Nana",
+            name: "나나",
             image: Image(systemName: "person.circle"),
             status: Status()
         ),
         User(
             id: NSUUID().uuidString,
-            name: "Teo",
+            name: "테오",
             image: Image(systemName: "person.circle"),
             status: Status()
         ),
         User(
             id: NSUUID().uuidString,
-            name: "Joy",
+            name: "조이",
             image: Image(systemName: "person.circle"),
             status: Status()
         ),

@@ -14,7 +14,6 @@ struct CardView: View {
     
     let model: Card
     @Binding var player: User
-    @Binding var progressAmount: Double
     
     let xCardMove: CGFloat
     let yCardMove: CGFloat
@@ -69,7 +68,6 @@ struct CardView: View {
             degrees = 12
         } completion: {
             viewModel.removeCard(model)
-            progressAmount += 1.0
         }
 
     }
@@ -85,7 +83,6 @@ struct CardView: View {
             degrees = -12
         } completion: {
             viewModel.removeCard(model)
-            progressAmount += 1.0
         }
     }
     

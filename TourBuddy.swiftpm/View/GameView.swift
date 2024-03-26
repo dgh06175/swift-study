@@ -10,7 +10,6 @@ import SwiftUI
 struct GameView: View {
     @StateObject var viewModel = CardsViewModel(service: CardService())
     @Binding var player: User
-    @State var progressAmount: Double = 00.0
     
     var body: some View {
         NavigationStack {
@@ -18,14 +17,10 @@ struct GameView: View {
                 if viewModel.cardModels.isEmpty {
                     FakeLoadingView(player: $player)
                 } else {
-                    ProgressView(value: progressAmount, total: Double(cards.capacity))
-                        .animation(.snappy, value: progressAmount)
-                        .frame(width: 300)
-                        .padding(100)
                     Spacer()
-                    CardStackView(player: $player, progressAmount: $progressAmount, viewModel: viewModel)
-                        .frame(width: 300)
                     Spacer()
+                    CardStackView(player: $player, viewModel: viewModel)
+                        .frame(width: 300)
                     Spacer()
                 }
             }

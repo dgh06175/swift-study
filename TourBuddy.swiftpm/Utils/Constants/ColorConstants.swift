@@ -9,6 +9,10 @@ extension Color {
     static let travelWallet2 = Color(red: 129/255, green: 217/255, blue: 229/255)
     static let travelWallet3 = Color(red: 183/255, green: 255/255, blue: 241/255)
 
+    static let brandColor = Color(hexString: "36C13B")
+    static let brandColorLight = Color(hexString: "DFF2E0")
+    static let brandColorHeavy = Color(hexString: "17821B")
+
 }
 
 // Color(hexColor: "FFCE30")

@@ -15,17 +15,41 @@ struct GameReadyView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
-                ForEach(MockData.users) { user in
-                    UserView(readyCount: $readyCount, user: user)
+                Text("참여를 대기하고 있습니다.")
+                    .font(.system(size: 24, weight: .bold))
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(Color.brandColorLight)
+                        .frame(width: 80, height: 35)
+                    Text("\(readyCount)/6")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(Color.brandColorHeavy)
                 }
+                Spacer()
+                    .frame(height: 20)
+                VStack {
+                    HStack {
+                        UserView(readyCount: $readyCount, user: MockData.users[0])
+                        UserView(readyCount: $readyCount, user: MockData.users[1])
+                        UserView(readyCount: $readyCount, user: MockData.users[2])
+                    }
+                    HStack {
+                        UserView(readyCount: $readyCount, user: MockData.users[3])
+                        UserView(readyCount: $readyCount, user: MockData.users[4])
+                        UserView(readyCount: $readyCount, user: MockData.users[5])
+                    }
+                    
+                }
+                .navigationDestination(isPresented: $navigateToGame) {
+                    GameView(player: $player)
+                }
+                Spacer()
+                    .frame(height: 20)
                 GameStartButtonView(readyCount: readyCount, navigateToGame: $navigateToGame)
-            }
-            .navigationDestination(isPresented: $navigateToGame) {
-                GameView(player: $player)
+                
+                .padding()
             }
         }
-        .padding()
-        
     }
 }
 
@@ -35,17 +59,7 @@ struct UserView: View {
     var user: User
     
     var body: some View {
-        HStack(spacing: 28) {
-            ZStack {
-                Circle()
-                    .fill(Color.lightGray)
-                    .frame(width: 58, height: 58)
-                user.image
-                    .resizable()
-                    .foregroundStyle(Color.gray)
-                    .frame(width: 60, height: 60)
-            }
-            
+        VStack {
             Button(action: {
                 isReady.toggle()
                 if isReady {
@@ -55,14 +69,25 @@ struct UserView: View {
                 }
             }, label: {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(isReady ? Color.travelWallet3 : Color.lightGray)
-                        .frame(width: 250, height: 60)
-                    Text(user.name).foregroundStyle(Color.black)
-                        .font(.title2)
+                    Circle()
+                        .fill(Color.lightGray)
+                        .frame(width: 78, height: 78)
+                    user.image
+                        .resizable()
+                        .foregroundStyle(Color.gray)
+                        .frame(width: 80, height: 80)
+                    Circle()
+                        .fill(Color.brandColor)
+                        .frame(width: 20, height: 20)
+                        .offset(CGSize(width: 24.0, height: 24.0))
+                        .opacity(isReady ? 1 : 0)
                 }
             })
+            Text(user.name)
+                .foregroundStyle(isReady ? Color.black : Color.gray)
         }
+        .opacity(isReady ? 1 : 0.3)
+        .padding()
     }
 }
 
@@ -71,17 +96,17 @@ struct GameStartButtonView: View {
     @Binding var navigateToGame: Bool
     
     var body: some View {
-        Button("게임 시작") {
+        Button("게임 시작!") {
             if readyCount == 6 {
                 navigateToGame = true
             }
         }
+        .frame(width: 140, height: 60)
         .disabled(readyCount != 6)
-        .padding(40)
-        .background(readyCount == 6 ? Color.travelWallet2 : Color.lightGray)
-        .foregroundColor(.black)
-        .cornerRadius(10)
-        .padding(40)
+        .background(readyCount == 6 ? Color.brandColor : Color.lightGray)
+        .foregroundColor(readyCount == 6 ? Color.white : Color.gray)
+        .font(.system(size: 20, weight: .semibold))
+        .cornerRadius(30)
     }
 }
 

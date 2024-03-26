@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CardStackView: View {
     @Binding var player: User
-    @Binding var progressAmount: Double
     // CardService 에 의존한다.
     @StateObject var viewModel: CardsViewModel
     
@@ -21,7 +20,6 @@ struct CardStackView: View {
                             viewModel: viewModel,
                             model: card,
                             player: $player,
-                            progressAmount: $progressAmount,
                             xCardMove: CGFloat(index * 2),
                             yCardMove: CGFloat(index * 2)
                         )
@@ -33,4 +31,12 @@ struct CardStackView: View {
             }
         }
     } 
+}
+
+struct CardStackView_Previews: PreviewProvider {
+    @State static var previewPlayer: User = MockData.users[0]
+    
+    static var previews: some View {
+        CardStackView(player: $previewPlayer, viewModel: CardsViewModel(service: CardService()))
+    }
 }
