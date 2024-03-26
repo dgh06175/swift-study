@@ -42,6 +42,9 @@ struct GameReadyView: View {
                     }
                     
                 }
+                .navigationDestination(isPresented: $navigateToGame) {
+                    GameView(player: $player)
+                }
                 Spacer()
                 GameStartButtonView(readyCount: readyCount, navigateToGame: $navigateToGame)
                     .padding()
@@ -57,9 +60,6 @@ struct GameReadyView: View {
                 }
                 .padding()
             }
-        }
-        .navigationDestination(isPresented: $navigateToGame) {
-            GameView(player: $player)
         }
     }
 }
