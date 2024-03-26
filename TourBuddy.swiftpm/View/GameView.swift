@@ -9,6 +9,8 @@ import SwiftUI
 
 struct GameView: View {
     @StateObject var viewModel = CardsViewModel(service: CardService())
+    @StateObject var userSelectionViewModel = UserSelectionViewModel()
+    
     @Binding var player: User
     
     var body: some View {
@@ -16,7 +18,11 @@ struct GameView: View {
             if viewModel.cardModels.isEmpty {
                 FakeLoadingView(player: $player)
             } else {
-                GameMainView(viewModel: viewModel, player: $player)
+                GameMainView(
+                    viewModel: viewModel,
+                    userSelectionViewModel: userSelectionViewModel,
+                    player: $player
+                )
             }
         }
     }
@@ -24,22 +30,21 @@ struct GameView: View {
 
 struct GameMainView: View {
     @StateObject var viewModel: CardsViewModel
+    @StateObject var userSelectionViewModel: UserSelectionViewModel
     @Binding var player: User
     @State private var isMicOn = true
-    
-    var mockedUsers: [User] {
-        MockData.users.dropFirst().map { user -> User in
-            return user
-        }
-    }
     
     var body: some View {
         VStack{
             Spacer()
                 .frame(height: 40)
-            UserSelectView(users: mockedUsers)
+            UserSelectView(userSelectionViewModel: userSelectionViewModel)
             Spacer()
-            CardStackView(player: $player, viewModel: viewModel)
+            CardStackView(
+                player: $player,
+                viewModel: viewModel,
+                userSelectionViewModel: userSelectionViewModel
+            )
                 .frame(width: 250)
             Spacer()
                 .frame(height: 30)

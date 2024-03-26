@@ -13,8 +13,11 @@ struct ResultUserView: View {
                 VStack {
                     player.image
                         .resizable()
+                        .clipShape(Circle())
+                        .overlay {
+                            Circle().stroke(.gray, lineWidth: 2)
+                        }
                         .frame(width: 60, height: 60)
-                        .foregroundStyle(Color.gray)
                     Text(player.name)
                         .foregroundStyle(Color.gray)
                 }

@@ -12,37 +12,37 @@ struct MockData {
         User(
             id: NSUUID().uuidString,
             name: "에이스",
-            image: Image(systemName: "person.circle"),
+            image: Image("ace"),
             status: Status()
         ),
         User(
             id: NSUUID().uuidString,
             name: "온브",
-            image: Image(systemName: "person.circle"),
+            image: Image("onve"),
             status: Status()
         ),
         User(
             id: NSUUID().uuidString,
             name: "쿠미",
-            image: Image(systemName: "person.circle"),
+            image: Image("kumi"),
             status: Status()
         ),
         User(
             id: NSUUID().uuidString,
             name: "나나",
-            image: Image(systemName: "person.circle"),
+            image: Image("nana"),
             status: Status()
         ),
         User(
             id: NSUUID().uuidString,
             name: "테오",
-            image: Image(systemName: "person.circle"),
+            image: Image("teo"),
             status: Status()
         ),
         User(
             id: NSUUID().uuidString,
             name: "조이",
-            image: Image(systemName: "person.circle"),
+            image: Image("joy"),
             status: Status()
         ),
     ]

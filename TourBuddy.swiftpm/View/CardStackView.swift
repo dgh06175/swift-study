@@ -11,6 +11,7 @@ struct CardStackView: View {
     @Binding var player: User
     // CardService 에 의존한다.
     @StateObject var viewModel: CardsViewModel
+    @StateObject var userSelectionViewModel: UserSelectionViewModel
     @State var index: Int = 0
     
     var body: some View {
@@ -19,6 +20,7 @@ struct CardStackView: View {
                 ForEach(Array(viewModel.cardModels.enumerated()), id: \.element.id) { i, card in
                     CardView(
                         viewModel: viewModel,
+                        userSelectionViewModel: userSelectionViewModel,
                         model: card,
                         player: $player,
                         index: $index,
@@ -27,8 +29,10 @@ struct CardStackView: View {
                     )
                 }
             }
-            SwipeActionTutorial()
-                .opacity(index == 0 ? 1 : 0)
+            withAnimation(.easeInOut(duration: 0.5)) {
+                SwipeActionTutorial()
+                    .opacity(index == 0 ? 1 : 0)
+            }
 //            if !viewModel.cardModels.isEmpty {
 //                SwipeActionButtonView(viewModel: viewModel)
 //            }
@@ -44,17 +48,17 @@ struct SwipeActionTutorial: View {
     }
 }
 
-struct CardStackView_Previews: PreviewProvider {
-    @State static var previewPlayer: User = MockData.users[0]
-    @State var index: Int = 0
-    @State var isSelectionFinished: Bool = false
-    
-    static var previews: some View {
-        CardStackView(
-            player: $previewPlayer,
-            viewModel: CardsViewModel(
-                service: CardService()
-            )
-        )
-    }
-}
+//struct CardStackView_Previews: PreviewProvider {
+//    @State static var previewPlayer: User = MockData.users[0]
+//    @State var index: Int = 0
+//    @State var isSelectionFinished: Bool = false
+//    
+//    static var previews: some View {
+//        CardStackView(
+//            player: $previewPlayer,
+//            viewModel: CardsViewModel(
+//                service: CardService()
+//            )
+//        )
+//    }
+//}

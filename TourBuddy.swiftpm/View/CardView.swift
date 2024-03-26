@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CardView: View {
     @ObservedObject var viewModel: CardsViewModel
+    @StateObject var userSelectionViewModel: UserSelectionViewModel
     @State private var xOffset: CGFloat = 0
     @State private var degrees: Double = 0
     
@@ -18,6 +19,7 @@ struct CardView: View {
     
     let xCardMove: CGFloat
     let yCardMove: CGFloat
+    
     
     var body: some View {
         ZStack{
@@ -30,6 +32,7 @@ struct CardView: View {
             }
             
             Text(model.question)
+                .multilineTextAlignment(.center)
                 .font(.title)
                 .foregroundColor(.black)
                 .padding()
@@ -66,9 +69,9 @@ struct CardView: View {
             degrees = 12
         } completion: {
             viewModel.removeCard(model)
+            userSelectionViewModel.initializeUsers()
             index += 1
         }
-
     }
     
     func swipeLeft() {
@@ -82,6 +85,7 @@ struct CardView: View {
             degrees = -12
         } completion: {
             viewModel.removeCard(model)
+            userSelectionViewModel.initializeUsers()
             index += 1
         }
     }

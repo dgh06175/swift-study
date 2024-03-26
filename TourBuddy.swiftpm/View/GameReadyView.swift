@@ -18,32 +18,29 @@ struct GameReadyView: View {
             VStack {
                 Spacer()
                     .frame(height: 40)
-                Text("참여를 대기하고 있습니다.")
+                Text("참여를 대기하고 있습니다")
                     .font(.system(size: 24, weight: .bold))
                 ZStack {
                     RoundedRectangle(cornerRadius: 20)
                         .fill(Color.brandColorLight)
-                        .frame(width: 80, height: 35)
+                        .frame(width: 100, height: 45)
                     Text("\(readyCount)/6")
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: 20, weight: .semibold))
                         .foregroundStyle(Color.brandColorHeavy)
                 }
                 Spacer()
                 VStack {
                     HStack {
-                        UserView(readyCount: $readyCount, user: MockData.users[0])
-                        UserView(readyCount: $readyCount, user: MockData.users[1])
-                        UserView(readyCount: $readyCount, user: MockData.users[2])
+                        UserReadyView(readyCount: $readyCount, user: MockData.users[0])
+                        UserReadyView(readyCount: $readyCount, user: MockData.users[1])
+                        UserReadyView(readyCount: $readyCount, user: MockData.users[2])
                     }
                     HStack {
-                        UserView(readyCount: $readyCount, user: MockData.users[3])
-                        UserView(readyCount: $readyCount, user: MockData.users[4])
-                        UserView(readyCount: $readyCount, user: MockData.users[5])
+                        UserReadyView(readyCount: $readyCount, user: MockData.users[3])
+                        UserReadyView(readyCount: $readyCount, user: MockData.users[4])
+                        UserReadyView(readyCount: $readyCount, user: MockData.users[5])
                     }
                     
-                }
-                .navigationDestination(isPresented: $navigateToGame) {
-                    GameView(player: $player)
                 }
                 Spacer()
                 GameStartButtonView(readyCount: readyCount, navigateToGame: $navigateToGame)
@@ -53,7 +50,7 @@ struct GameReadyView: View {
                     Image(systemName: isMicOn ? "mic.circle" : "mic.slash.circle")
                         .resizable()
                         .frame(width: 40, height: 40)
-                        .foregroundStyle(Color.gray)
+                        .foregroundStyle(isMicOn ? Color.gray : Color.lightGray)
                         .onTapGesture {
                             isMicOn.toggle()
                         }
@@ -61,10 +58,13 @@ struct GameReadyView: View {
                 .padding()
             }
         }
+        .navigationDestination(isPresented: $navigateToGame) {
+            GameView(player: $player)
+        }
     }
 }
 
-struct UserView: View {
+struct UserReadyView: View {
     @Binding var readyCount: Int
     @State var isReady : Bool = false
     var user: User
@@ -85,10 +85,16 @@ struct UserView: View {
                         .frame(width: 78, height: 78)
                     user.image
                         .resizable()
-                        .foregroundStyle(Color.gray)
+                        .clipShape(Circle())
+                        .overlay {
+                            Circle().stroke(.gray, lineWidth: 3)
+                        }
                         .frame(width: 80, height: 80)
                     Circle()
                         .fill(Color.onlineColor)
+                        .overlay {
+                            Circle().stroke(.white, lineWidth: 4)
+                        }
                         .frame(width: 22, height: 22)
                         .offset(CGSize(width: 24.0, height: 24.0))
                         .opacity(isReady ? 1 : 0)
