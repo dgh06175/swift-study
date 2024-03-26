@@ -3,6 +3,7 @@ import SwiftUI
 
 extension Color {
     static let lightGray = Color(hexString: "D9D9D9")
+    static let lightGray2 = Color(hexString: "EAEAEA")
     static let lightGreen1 = Color(hexString: "7FFF00")
     static let lightGreen2 = Color(hexString: "BEFF7C")    
     static let travelWallet1 = Color(red: 99/255, green: 173/255, blue: 252/255)
@@ -12,6 +13,7 @@ extension Color {
     static let brandColor = Color(hexString: "36C13B")
     static let brandColorLight = Color(hexString: "DFF2E0")
     static let brandColorHeavy = Color(hexString: "17821B")
+    static let onlineColor = Color(hexString: "44DA3D")
 
 }
 

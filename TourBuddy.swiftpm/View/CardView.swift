@@ -14,6 +14,7 @@ struct CardView: View {
     
     let model: Card
     @Binding var player: User
+    @Binding var index: Int
     
     let xCardMove: CGFloat
     let yCardMove: CGFloat
@@ -23,10 +24,7 @@ struct CardView: View {
             ZStack(alignment: .top) {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.gray, lineWidth: 1)
-                    )
+                    .stroke(Color.gray, lineWidth: 1)
                     .shadow(radius: 1, x: 1, y: 1)
                 SwipeActionIndicatorView(xOffsett: $xOffset)
             }
@@ -68,6 +66,7 @@ struct CardView: View {
             degrees = 12
         } completion: {
             viewModel.removeCard(model)
+            index += 1
         }
 
     }
@@ -83,6 +82,7 @@ struct CardView: View {
             degrees = -12
         } completion: {
             viewModel.removeCard(model)
+            index += 1
         }
     }
     

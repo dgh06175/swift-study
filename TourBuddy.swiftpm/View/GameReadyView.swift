@@ -11,10 +11,13 @@ struct GameReadyView: View {
     @State var readyCount: Int = 0
     @State private var navigateToGame = false
     @State var player: User = MockData.users[0]
+    @State private var isMicOn = true 
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
+            VStack {
+                Spacer()
+                    .frame(height: 40)
                 Text("참여를 대기하고 있습니다.")
                     .font(.system(size: 24, weight: .bold))
                 ZStack {
@@ -26,7 +29,6 @@ struct GameReadyView: View {
                         .foregroundStyle(Color.brandColorHeavy)
                 }
                 Spacer()
-                    .frame(height: 20)
                 VStack {
                     HStack {
                         UserView(readyCount: $readyCount, user: MockData.users[0])
@@ -44,9 +46,18 @@ struct GameReadyView: View {
                     GameView(player: $player)
                 }
                 Spacer()
-                    .frame(height: 20)
                 GameStartButtonView(readyCount: readyCount, navigateToGame: $navigateToGame)
-                
+                    .padding()
+                HStack {
+                    Spacer()
+                    Image(systemName: isMicOn ? "mic.circle" : "mic.slash.circle")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                        .foregroundStyle(Color.gray)
+                        .onTapGesture {
+                            isMicOn.toggle()
+                        }
+                }
                 .padding()
             }
         }
@@ -77,8 +88,8 @@ struct UserView: View {
                         .foregroundStyle(Color.gray)
                         .frame(width: 80, height: 80)
                     Circle()
-                        .fill(Color.brandColor)
-                        .frame(width: 20, height: 20)
+                        .fill(Color.onlineColor)
+                        .frame(width: 22, height: 22)
                         .offset(CGSize(width: 24.0, height: 24.0))
                         .opacity(isReady ? 1 : 0)
                 }

@@ -13,17 +13,47 @@ struct GameView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                if viewModel.cardModels.isEmpty {
-                    FakeLoadingView(player: $player)
-                } else {
-                    Spacer()
-                    Spacer()
-                    CardStackView(player: $player, viewModel: viewModel)
-                        .frame(width: 300)
-                    Spacer()
-                }
+            if viewModel.cardModels.isEmpty {
+                FakeLoadingView(player: $player)
+            } else {
+                GameMainView(viewModel: viewModel, player: $player)
             }
+        }
+    }
+}
+
+struct GameMainView: View {
+    @StateObject var viewModel: CardsViewModel
+    @Binding var player: User
+    @State private var isMicOn = true
+    
+    var mockedUsers: [User] {
+        MockData.users.dropFirst().map { user -> User in
+            return user
+        }
+    }
+    
+    var body: some View {
+        VStack{
+            Spacer()
+                .frame(height: 40)
+            UserSelectView(users: mockedUsers)
+            Spacer()
+            CardStackView(player: $player, viewModel: viewModel)
+                .frame(width: 250)
+            Spacer()
+                .frame(height: 30)
+            HStack {
+                Spacer()
+                Image(systemName: isMicOn ? "mic.circle" : "mic.slash.circle")
+                    .resizable()
+                    .frame(width: 40, height: 40)
+                    .foregroundStyle(Color.gray)
+                    .onTapGesture {
+                        isMicOn.toggle()
+                    }
+            }
+            .padding()
         }
     }
 }
