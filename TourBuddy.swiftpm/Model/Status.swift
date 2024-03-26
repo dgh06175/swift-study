@@ -13,4 +13,17 @@ struct Status: Hashable{
     var money: Int = 0
     var adventure: Int = 0
     var plan: Int = 0
+    
+    func getSum() -> Int {
+        return energy + money + adventure + plan
+    }
+    
+    static func mockStatus() -> Status {
+        return Status(
+            energy: Int.random(in: -12...12),
+            money: Int.random(in: -12...12),
+            adventure: Int.random(in: -12...12),
+            plan: Int.random(in: -12...12)
+        )
+    }
 }

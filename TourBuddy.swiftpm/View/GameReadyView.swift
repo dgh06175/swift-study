@@ -24,6 +24,8 @@ struct GameReadyView: View {
                 GameView(player: $player)
             }
         }
+        .padding()
+        
     }
 }
 
@@ -55,7 +57,7 @@ struct UserView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
                         .fill(isReady ? Color.travelWallet3 : Color.lightGray)
-                        .frame(width: 300, height: 60)
+                        .frame(width: 250, height: 60)
                     Text(user.name).foregroundStyle(Color.black)
                         .font(.title2)
                 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SizeConstants {
     static var cardWidth: CGFloat {
-        300;
+        250;
     }
     static var cardHeight: CGFloat {
         cardWidth / 3 * 4;

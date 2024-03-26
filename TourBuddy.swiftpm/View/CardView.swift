@@ -16,15 +16,19 @@ struct CardView: View {
     @Binding var player: User
     @Binding var progressAmount: Double
     
+    let xCardMove: CGFloat
+    let yCardMove: CGFloat
+    
     var body: some View {
         ZStack{
             ZStack(alignment: .top) {
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.travelWallet3)
+                    .fill(Color.white)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.gray, lineWidth: 1)
                     )
+                    .shadow(radius: 1, x: 1, y: 1)
                 SwipeActionIndicatorView(xOffsett: $xOffset)
             }
             
@@ -33,6 +37,7 @@ struct CardView: View {
                 .foregroundColor(.black)
                 .padding()
         }
+        .offset(x: xCardMove, y: yCardMove)
         .onReceive(viewModel.$buttonSwipeAction, perform: { action in // O, X 버튼 작동 위한 코드
             onReveiveSwipeAction(action) 
         })
@@ -65,7 +70,6 @@ struct CardView: View {
         } completion: {
             viewModel.removeCard(model)
             progressAmount += 1.0
-            print(progressAmount)
         }
 
     }
@@ -82,7 +86,6 @@ struct CardView: View {
         } completion: {
             viewModel.removeCard(model)
             progressAmount += 1.0
-            print(progressAmount)
         }
     }
     

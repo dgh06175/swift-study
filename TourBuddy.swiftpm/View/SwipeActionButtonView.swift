@@ -36,6 +36,7 @@ struct SwipeActionButtonView: View {
             }
             .frame(width: 48, height: 48)
         }
+        .padding(8)
     }
 }
 
