@@ -12,7 +12,7 @@ struct CardStackView: View {
     // CardService 에 의존한다.
     @StateObject var viewModel: CardsViewModel
     @StateObject var userSelectionViewModel: UserSelectionViewModel
-    @State var index: Int = 0
+    @Binding var index: Int
     
     var body: some View {
         VStack(spacing: 16) {
@@ -40,6 +40,7 @@ struct CardStackView: View {
     } 
 }
 
+
 struct SwipeActionTutorial: View {
     var body: some View {
         Text("좌우로 밀어서 선택")
@@ -58,7 +59,9 @@ struct SwipeActionTutorial: View {
 //            player: $previewPlayer,
 //            viewModel: CardsViewModel(
 //                service: CardService()
-//            )
+//            ),
+//            userSelectionViewModel: UserSelectionViewModel()
+//            index: 0
 //        )
 //    }
 //}

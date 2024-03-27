@@ -33,21 +33,24 @@ struct GameMainView: View {
     @StateObject var userSelectionViewModel: UserSelectionViewModel
     @Binding var player: User
     @State private var isMicOn = true
+    @State var index: Int = 0
     
     var body: some View {
         VStack{
             Spacer()
                 .frame(height: 40)
+            GameProgressBarView(currentIndex: index, totalCount: 7)
+                .frame(height: 20)
+                .padding(.horizontal)
             UserSelectView(userSelectionViewModel: userSelectionViewModel)
             Spacer()
             CardStackView(
                 player: $player,
                 viewModel: viewModel,
-                userSelectionViewModel: userSelectionViewModel
+                userSelectionViewModel: userSelectionViewModel,
+                index: $index
             )
-                .frame(width: 250)
-            Spacer()
-                .frame(height: 30)
+            .frame(width: 250)
             HStack {
                 Spacer()
                 Image(systemName: isMicOn ? "mic.circle" : "mic.slash.circle")
@@ -61,6 +64,19 @@ struct GameMainView: View {
             .padding()
         }
     }
+}
+
+struct GameProgressBarView: View {
+    var currentIndex: Int // 현재 인덱스
+    var totalCount: Int // 총 카운트
+
+    var body: some View {
+            ProgressView(value: Float(currentIndex), total: Float(totalCount))
+                .progressViewStyle(LinearProgressViewStyle(tint: Color.blue)) // 프로그레스 바의 색상 지정
+                .scaleEffect(x: 1, y: 2, anchor: .center) // 프로그레스 바의 높이 조절
+                .animation(.linear, value: currentIndex)
+                .padding() // 적절한 패딩 추가
+        }
 }
 
 struct GameView_Previews: PreviewProvider {
