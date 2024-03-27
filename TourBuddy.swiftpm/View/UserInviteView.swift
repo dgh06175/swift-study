@@ -15,9 +15,7 @@ struct UserInviteView: View {
         ZStack {
             GameReadyView()
                 .opacity(navigateToReady ? 1 : 0)
-            // 화면 전환 애니메이션을 적용합니다.
-                .animation(.easeInOut(duration: 0.5), value: navigateToReady)
-            // 애니메이션 효과를 위해 조건부로 ZStack 내부에 배치합니다.
+                .animation(.easeInOut(duration: 0.2), value: navigateToReady)
             if !navigateToReady {
                 VStack {
                     Spacer()
@@ -57,8 +55,7 @@ struct UserInviteView: View {
                     Spacer()
                         .frame(height: 60)
                 }
-                .transition(.asymmetric(insertion: .identity, removal: .move(edge: .leading)))
-                .animation(.easeInOut(duration: 0.5), value: navigateToReady)
+                .animation(.easeInOut(duration: 0.2), value: navigateToReady)
             }
         }
     }

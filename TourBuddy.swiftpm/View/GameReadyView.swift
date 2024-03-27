@@ -96,7 +96,7 @@ struct UserReadyView: View {
                             Circle().stroke(.white, lineWidth: 4)
                         }
                         .frame(width: 22, height: 22)
-                        .offset(CGSize(width: 24.0, height: 24.0))
+                        .offset(CGSize(width: 26.0, height: 26.0))
                         .opacity(isReady ? 1 : 0)
                 }
             })

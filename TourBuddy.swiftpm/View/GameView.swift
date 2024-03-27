@@ -53,7 +53,7 @@ struct GameMainView: View {
                 Image(systemName: isMicOn ? "mic.circle" : "mic.slash.circle")
                     .resizable()
                     .frame(width: 40, height: 40)
-                    .foregroundStyle(Color.gray)
+                    .foregroundStyle(isMicOn ? Color.gray : Color.lightGray)
                     .onTapGesture {
                         isMicOn.toggle()
                     }
