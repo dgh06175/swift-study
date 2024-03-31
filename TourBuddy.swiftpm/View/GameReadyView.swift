@@ -79,32 +79,38 @@ struct UserReadyView: View {
                     readyCount -= 1
                 }
             }, label: {
-                ZStack {
-                    Circle()
-                        .fill(Color.lightGray)
-                        .frame(width: 78, height: 78)
-                    user.image
-                        .resizable()
-                        .clipShape(Circle())
-                        .overlay {
-                            Circle().stroke(.gray, lineWidth: 3)
-                        }
-                        .frame(width: 80, height: 80)
-                    Circle()
-                        .fill(Color.onlineColor)
-                        .overlay {
-                            Circle().stroke(.white, lineWidth: 4)
-                        }
-                        .frame(width: 22, height: 22)
-                        .offset(CGSize(width: 26.0, height: 26.0))
-                        .opacity(isReady ? 1 : 0)
-                }
+                UserImageButtonView(isReady: $isReady, user: user)
             })
             Text(user.name)
                 .foregroundStyle(isReady ? Color.black : Color.gray)
         }
         .opacity(isReady ? 1 : 0.3)
         .padding()
+    }
+}
+
+struct UserImageButtonView: View {
+    @Binding var isReady : Bool
+    var user: User
+    
+    var body: some View {
+        ZStack {
+            user.image
+                .resizable()
+                .clipShape(Circle())
+                .overlay {
+                    Circle().stroke(.gray, lineWidth: 3)
+                }
+                .frame(width: 80, height: 80)
+            Circle()
+                .fill(Color.onlineColor)
+                .overlay {
+                    Circle().stroke(.white, lineWidth: 4)
+                }
+                .frame(width: 22, height: 22)
+                .offset(CGSize(width: 26.0, height: 26.0))
+                .opacity(isReady ? 1 : 0)
+        }
     }
 }
 

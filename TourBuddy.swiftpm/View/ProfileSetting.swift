@@ -42,7 +42,7 @@ struct UserView: View {
             ZStack {
                 Circle()
                     .fill(Color.lightGray)
-                    .frame(width: 138, height: 138)
+                    .frame(width: 140, height: 140)
                 user.image
                     .resizable()
                     .clipShape(Circle())
@@ -66,7 +66,7 @@ struct UserInviteViewButtonView: View {
     
     var body: some View {
         Button("다음") {
-            navigateToGame = true
+            navigateToGame.toggle()
         }
         .frame(width: 140, height: 60)
         .background(Color.brandColor)
