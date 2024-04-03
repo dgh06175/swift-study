@@ -74,7 +74,7 @@ struct GameProgressBarView: View {
             ProgressView(value: Float(currentIndex), total: Float(totalCount))
                 .progressViewStyle(LinearProgressViewStyle(tint: Color.blue)) // 프로그레스 바의 색상 지정
                 .scaleEffect(x: 1, y: 2, anchor: .center) // 프로그레스 바의 높이 조절
-                .animation(.linear, value: currentIndex)
+                .animation(.linear(duration: 0.5), value: currentIndex)
                 .padding() // 적절한 패딩 추가
         }
 }

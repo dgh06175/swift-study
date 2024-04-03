@@ -9,12 +9,9 @@ import SwiftUI
 
 struct ProfileSetting: View {
     @State var player: User = MockData.users[0]
-    @State private var navigateToInvite = false
 
     var body: some View {
-        if navigateToInvite {
-            UserInviteView()
-        } else {
+        NavigationStack {
             VStack {
                 Spacer()
                     .frame(height: 40)
@@ -25,8 +22,11 @@ struct ProfileSetting: View {
                 Spacer()
                 UserView(user: MockData.users[0])
                 Spacer()
-                UserInviteViewButtonView(navigateToGame: $navigateToInvite)
-                    .padding()
+                
+                NavigationLink(destination: UserInviteView()) {
+                    UserInviteViewButtonView()
+                }
+                .padding()
                 Spacer()
                     .frame(height: 60)
             }
@@ -62,17 +62,13 @@ struct UserView: View {
 }
 
 struct UserInviteViewButtonView: View {
-    @Binding var navigateToGame: Bool
-    
     var body: some View {
-        Button("다음") {
-            navigateToGame.toggle()
-        }
-        .frame(width: 140, height: 60)
-        .background(Color.brandColor)
-        .foregroundColor(Color.white)
-        .font(.system(size: 20, weight: .semibold))
-        .cornerRadius(30)
+        Text("다음")
+            .frame(width: 140, height: 60)
+            .background(Color.brandColor)
+            .foregroundColor(Color.white)
+            .font(.system(size: 20, weight: .semibold))
+            .cornerRadius(30)
     }
 }
 

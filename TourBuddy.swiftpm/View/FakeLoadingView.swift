@@ -33,9 +33,10 @@ struct FakeLoadingView: View {
 
 struct ProgressBarView: View {
     var body: some View {
-        ProgressView()
-            .progressViewStyle(CircularProgressViewStyle())
-            .scaleEffect(5)
-            .padding()
+        ProgressView("로딩 중..")
     }
+}
+
+#Preview {
+    ProgressBarView()
 }

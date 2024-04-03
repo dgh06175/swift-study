@@ -47,7 +47,9 @@ struct GameReadyView: View {
                 }
                 Spacer()
                 GameStartButtonView(readyCount: readyCount, navigateToGame: $navigateToGame)
-                    .padding()
+//                NavigationLink(destination: GameView(player: $player), isActive: $navigateToGame) {
+//                    EmptyView()
+//                }
                 HStack {
                     Spacer()
                     Image(systemName: isMicOn ? "mic.circle" : "mic.slash.circle")
@@ -78,9 +80,9 @@ struct UserReadyView: View {
                 } else {
                     readyCount -= 1
                 }
-            }, label: {
+            }) {
                 UserImageButtonView(isReady: $isReady, user: user)
-            })
+            }
             Text(user.name)
                 .foregroundStyle(isReady ? Color.black : Color.gray)
         }
@@ -119,10 +121,8 @@ struct GameStartButtonView: View {
     @Binding var navigateToGame: Bool
     
     var body: some View {
-        Button("게임 시작!") {
-            if readyCount == 6 {
-                navigateToGame = true
-            }
+        Button("게임 시작!"){
+            navigateToGame = true
         }
         .frame(width: 140, height: 60)
         .disabled(readyCount != 6)
@@ -130,6 +130,7 @@ struct GameStartButtonView: View {
         .foregroundColor(readyCount == 6 ? Color.white : Color.gray)
         .font(.system(size: 20, weight: .semibold))
         .cornerRadius(30)
+        .padding()
     }
 }
 

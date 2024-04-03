@@ -44,7 +44,7 @@ struct ResultView: View {
                 )
             }
             .foregroundStyle(Color.gray)
-            ScrollView {
+            ScrollView() {
                 ResultUserView(player: player)
                     .padding(8)
                 ForEach(mockedUsers) { user in

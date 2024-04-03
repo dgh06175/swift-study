@@ -12,16 +12,15 @@ struct UserInviteView: View {
     @State private var navigateToReady = false
 
     var body: some View {
-        ZStack {
-            GameReadyView()
-                .opacity(navigateToReady ? 1 : 0)
-                .animation(.easeInOut(duration: 0.2), value: navigateToReady)
-            if !navigateToReady {
+        NavigationStack {
+            ZStack {
                 VStack {
                     Spacer()
                         .frame(height: 40)
                     Text("여행 인원을 초대해주세요")
                         .font(.system(size: 24, weight: .bold))
+                        .multilineTextAlignment(.center)
+                        .frame(width: 300)
                     HStack(spacing: 100) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 20)
@@ -50,8 +49,10 @@ struct UserInviteView: View {
                         
                     }
                     Spacer()
-                    GameReadyViewButtonView(navigateToReady: $navigateToReady)
-                        .padding()
+                    NavigationLink(destination: GameReadyView()) {
+                        GameReadyViewButtonView()
+                    }
+                    .padding()
                     Spacer()
                         .frame(height: 60)
                 }
@@ -86,17 +87,13 @@ struct InvitedUserView: View {
 }
 
 struct GameReadyViewButtonView: View {
-    @Binding var navigateToReady: Bool
-    
     var body: some View {
-        Button("다음") {
-            navigateToReady = true
-        }
-        .frame(width: 140, height: 60)
-        .background(Color.brandColor)
-        .foregroundColor(Color.white)
-        .font(.system(size: 20, weight: .semibold))
-        .cornerRadius(30)
+        Text("다음")
+            .frame(width: 140, height: 60)
+            .background(Color.brandColor)
+            .foregroundColor(Color.white)
+            .font(.system(size: 20, weight: .semibold))
+            .cornerRadius(30)
     }
 }
 
